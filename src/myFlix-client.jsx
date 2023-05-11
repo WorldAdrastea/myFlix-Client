@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { MainView } from './components/main_view/main-view';
+import MainView from './components/main_view/main-view';
 
 //Import statement to indicate that you need to bundle `./index.scss`
 import "./myFlix-client.scss"
