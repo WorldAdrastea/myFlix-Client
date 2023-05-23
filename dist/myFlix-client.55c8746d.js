@@ -2955,7 +2955,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./myFlix-client.scss":"cpu2q","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"66FEq","./components/main_view/main-view":"2MZDY"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"66FEq","./components/main_view/main-view":"2MZDY","./myFlix-client.scss":"cpu2q"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("331f34ee7ddbfede");
 
@@ -27140,7 +27140,7 @@ module.exports = require("5c42f3564ae8385c");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{}],"cpu2q":[function() {},{}],"66FEq":[function(require,module,exports) {
+},{}],"66FEq":[function(require,module,exports) {
 "use strict";
 var Refresh = require("fb5fd805be6cfce5");
 function debounce(func, delay) {
@@ -28411,8 +28411,8 @@ const LoginView = ({ onLoggedIn  })=>{
         // this prevents the default behaviour of the form which is to reload the entire page
         event.preventDefault();
         const data = {
-            access: username,
-            secret: password
+            Username: username,
+            Password: password
         };
         fetch("https://secret-peak-11846.herokuapp.com/login", {
             method: "POST",
@@ -28444,13 +28444,13 @@ const LoginView = ({ onLoggedIn  })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 42,
+                        lineNumber: 41,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 40,
+                lineNumber: 39,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28463,13 +28463,13 @@ const LoginView = ({ onLoggedIn  })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 51,
+                        lineNumber: 50,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 49,
+                lineNumber: 48,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -28477,13 +28477,13 @@ const LoginView = ({ onLoggedIn  })=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 58,
+                lineNumber: 57,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 39,
+        lineNumber: 38,
         columnNumber: 9
     }, undefined);
 };
@@ -28497,7 +28497,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"74nUG","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"66FEq","react":"21dqq"}],"4OGiN":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"74nUG","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"66FEq"}],"4OGiN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$73d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -28642,6 +28642,6 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"74nUG","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"66FEq","react":"21dqq"}]},["2wN43","5C7Pm","bLm2k"], "bLm2k", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"74nUG","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"66FEq"}],"cpu2q":[function() {},{}]},["2wN43","5C7Pm","bLm2k"], "bLm2k", "parcelRequireaec4")
 
 //# sourceMappingURL=myFlix-client.55c8746d.js.map

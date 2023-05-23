@@ -8,8 +8,8 @@ export const LoginView = ({ onLoggedIn }) => {
         event.preventDefault();
 
         const data = {
-            access: username,
-            secret: password
+            Username: username,
+            Password: password
         };
 
         fetch("https://secret-peak-11846.herokuapp.com/login", {
@@ -18,8 +18,7 @@ export const LoginView = ({ onLoggedIn }) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
-        })
-            .then((response) => response.json())
+        }).then((response) => response.json())
             .then((data) => {
                 console.log("Login response: ", data);
                 if (data.user) {
