@@ -1,12 +1,18 @@
 import { createRoot } from 'react-dom/client';
-import { MainView } from './components/main_view/main-view';
+import { MainView } from './components/MainView/main-view';
+import Container from 'react-bootstrap/Container';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-//Import statement to indicate that you need to bundle `./index.scss`
-import "./myFlix-client.scss"
+//Import myFlix-client.scss
+import './myFlix-client.scss';
 
 //Main component (will eventually use all the others)
 const App = () => {
-    return <MainView />;
+    return (
+        <Container>
+            <MainView />
+        </Container>
+    );
 };
 
 //Finds the root of app
