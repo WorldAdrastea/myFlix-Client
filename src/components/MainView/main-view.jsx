@@ -6,8 +6,9 @@ import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view";
 import { SignupView } from "../SignUpView/signup-view";
 //Importing Bootstrap Components
-import { Col, Row, Stack } from "react-bootstrap";
-
+import { Col, Row } from "react-bootstrap";
+//Importing Router
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -21,7 +22,7 @@ export const MainView = () => {
       if (!token) {
         return;
       }
-      //Fetches API with movies
+      //Fetches API with movies and maps the data out into the following structure
       fetch("https://secret-peak-11846.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` }
       })
@@ -51,9 +52,11 @@ export const MainView = () => {
     }, [token]);
 
   return (
+    // the following shows the login view and signup view if user is not logged it
     <>
       {!user ? (
-        <Col md={5}>
+        <Col md={5} className="LoginSignup m-3 justify-content-center">
+          Welcome to the myFlix Movie App! Please login:
           <LoginView
             onLoggedIn={(user, token) => {
               setUser(user);
@@ -61,9 +64,11 @@ export const MainView = () => {
             }}
           />
           or
+          Signup:
           <SignupView />
         </Col>
       ) : selectedMovie ? (
+        // if the user has selected a movie then it will show the movie view
         <Col md={8} style={{ border: "1px solid black" }}>
           <MovieView
             style={{ border: "1px solid green" }}
@@ -85,24 +90,11 @@ export const MainView = () => {
           >
             Logout
           </button>
-          <div>The list is empty!</div>
         </>
       )}
-      {!selectedMovie && movies.length > 0 && (
+      {/* This displays the movie list if there are no selected movies, there are at least 1 movies and the user is logged in */}
+      {!selectedMovie && movies.length > 0 && user && (
         <>
-          {/* Logout button */}
-          <Row>
-            <button
-              onClick={() => {
-                setUser(null);
-                setToken(null);
-                localStorage.clear();
-              }}
-            >
-              Logout
-            </button>
-          </Row>
-
           {movies.map((movie) => (
             <Row className="m-3 justify-content-center">
               <MovieCard
