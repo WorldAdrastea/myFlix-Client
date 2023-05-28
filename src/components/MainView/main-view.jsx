@@ -16,7 +16,6 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken: null);
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
  
     useEffect(() => {
       if (!token) {
@@ -53,61 +52,75 @@ export const MainView = () => {
 
   return (
     // the following shows the login view and signup view if user is not logged it
-    <>
-      {!user ? (
-        <Col md={5} className="LoginSignup m-3 justify-content-center">
-          Welcome to the myFlix Movie App! Please login:
-          <LoginView
-            onLoggedIn={(user, token) => {
-              setUser(user);
-              setToken(token);
-            }}
+    <BrowserRouter>
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <SignupView />
+                  </Col>
+                )}
+              </>
+            }
           />
-          or
-          Signup:
-          <SignupView />
-        </Col>
-      ) : selectedMovie ? (
-        // if the user has selected a movie then it will show the movie view
-        <Col md={8} style={{ border: "1px solid black" }}>
-          <MovieView
-            style={{ border: "1px solid green" }}
-            movie={selectedMovie}
-            onBackClick={() => setSelectedMovie(null)}
+          <Route 
+            path="/login"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                  </Col>
+                )}
+              </>
+            }
           />
-        </Col>
-      ) : movies.length === 0 ? (
-        <div>The list is empty!</div>
-      ) : (
-        <>
-          {/* Logout Button */}
-          <button
-            onClick={() => {
-              setUser(null);
-              setToken(null);
-              localStorage.clear();
-            }}
-          >
-            Logout
-          </button>
-        </>
-      )}
-      {/* This displays the movie list if there are no selected movies, there are at least 1 movies and the user is logged in */}
-      {!selectedMovie && movies.length > 0 && user && (
-        <>
-          {movies.map((movie) => (
-            <Row className="m-3 justify-content-center">
-              <MovieCard
-                key={movie.id}
-                movie={movie}
-                onMovieClick={(newSelectedMovie) => {
-                  setSelectedMovie(newSelectedMovie);
-                }}
-              />
-            </Row>
-          ))}
-        </>
-      )}
-    </>
+          <Route
+            path="/movies/:movieId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <Col md={8}>
+                    <MovieView movies={movies} />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <>
+                    {movies.map((movie) => (
+                      <Col className="mb-4" key={movie.id} md>
+                        <MovieCard movie={movie} />
+                      </Col>
+                    ))}
+                  </>
+                )}
+              </>
+            }
+          />
+        </Routes>
+      </Row>
+    </BrowserRouter>
   );
 };

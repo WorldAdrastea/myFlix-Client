@@ -1,22 +1,35 @@
-import { Container } from 'react-bootstrap';
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+
 //import movie-view styling
 import './movie-view.scss';
 import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Button from "react-bootstrap/Button";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+    const { movieId } = useParams();
+
+    console.log("movies:", movies);
+    console.log("movieId:", movieId);
+
+    const movie = movies.find((m) => m.id === movieId);
+
+    console.log("movie:", movie);
+
     return (
-        <Container >
+        <Container>
             <Row md={8} style={{ border: "1px solid black"}}>
                 <Row>
-                    <img src={movie.image} alt={movie.title}/>
+                    <img src={movie.image} alt="Movie Image"/>
                 </Row>
 
-                <Row className="movie-title">
+                <Row>
                     <span>Title: </span>
                     <span>{movie.title}</span>
                 </Row>
 
-                <Row className="movie-desc">
+                <Row>
                     <span>Description: </span>
                     <span>{movie.description}</span>
                 </Row>
@@ -32,11 +45,9 @@ export const MovieView = ({ movie, onBackClick }) => {
                 </Row>
 
                 <Row>
-                <button 
-                    onClick={onBackClick}
-                    className="back-button"
-                    style={{cursor: "pointer"}}
-                >Back</button>
+                    <Link to={'/'}>
+                        <Button className="back-button">Back</Button>
+                    </Link>
                 </Row>
             </Row>
         </Container>
