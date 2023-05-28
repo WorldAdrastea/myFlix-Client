@@ -5,6 +5,7 @@ import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view";
 import { SignupView } from "../SignUpView/signup-view";
+import { NavigationBar } from "../NavigationBar/navigation-bar";
 //Importing Bootstrap Components
 import { Col, Row } from "react-bootstrap";
 //Importing Router
@@ -53,6 +54,12 @@ export const MainView = () => {
   return (
     // the following shows the login view and signup view if user is not logged it
     <BrowserRouter>
+      <NavigationBar
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+        }}
+      />
       <Row className="justify-content-md-center">
         <Routes>
           <Route
