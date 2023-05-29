@@ -6,6 +6,8 @@ import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view";
 import { SignupView } from "../SignUpView/signup-view";
 import { NavigationBar } from "../NavigationBar/navigation-bar";
+import { ProfileView } from "../ProfileView/profile-view";
+import { AccountDeletion } from "../ProfileView/account-deletion";
 //Importing Bootstrap Components
 import { Col, Row } from "react-bootstrap";
 //Importing Router
@@ -17,7 +19,8 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken: null);
   const [movies, setMovies] = useState([]);
- 
+  const [favouriteMovies, setfavouriteMovies] = useState([]);
+
     useEffect(() => {
       if (!token) {
         return;
@@ -102,6 +105,35 @@ export const MainView = () => {
                   <Col md={8}>
                     <MovieView movies={movies} />
                   </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <>
+                {user ? (
+                  <Col>
+                    <ProfileView
+                      user={user}
+                      updateUser={setUser}
+                      favouriteMovieList={favouriteMovies}
+                      token={token}
+                      favouriteMovies={favouriteMovies}
+                    />
+                    <AccountDeletion
+                      user={user}
+                      token={token}
+                      onRemoval={() => {
+                        setUser(null),
+                        setToken(null),
+                        localStorage.clear();
+                      }}
+                    />
+                  </Col>
+                ) : (
+                  <Navigate to="/login" replace />
                 )}
               </>
             }
