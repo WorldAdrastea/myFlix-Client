@@ -9,7 +9,7 @@ export const ProfileView = ({ user, favouriteMovieList, token, favouriteMovies, 
     const [birthdate, setBirthdate] = useState("");
     const [confirmation, setConfirmation] = useState("");
 
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
         const data = {
@@ -21,12 +21,12 @@ export const ProfileView = ({ user, favouriteMovieList, token, favouriteMovies, 
 
         console.log("data:", data); // Add this console log
 
-        fetch(`https://secret-peak-11846.herokuapp.com/users/${user._id}`, {
+        fetch(`https://secret-peak-11846.herokuapp.com/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
                 Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             }
         }).then(response => {
             if (response.ok) {
