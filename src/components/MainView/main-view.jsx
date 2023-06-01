@@ -1,4 +1,5 @@
 //Importing useState for creating annd initializing state
+import React from "react";
 import { useState, useEffect } from "react";
 //Importing components for other views
 import { MovieCard } from "../MovieCard/movie-card";
@@ -19,7 +20,11 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken: null);
   const [movies, setMovies] = useState([]);
-  const [favouriteMovies, setfavouriteMovies] = useState([]);
+
+  const updateUser = user => {
+        setUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
+    } 
 
     useEffect(() => {
       if (!token) {
@@ -31,7 +36,6 @@ export const MainView = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data)
           const moviesFromApi = data.map((movie) => {
             return {
               id: movie._id,
@@ -103,7 +107,12 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView movies={movies} />
+                    <MovieView 
+                      movies={movies}
+                      user={user}
+                      updateUser={setUser}
+                      token={token}
+                    />
                   </Col>
                 )}
               </>
@@ -117,10 +126,9 @@ export const MainView = () => {
                   <Col>
                     <ProfileView
                       user={user}
-                      updateUser={setUser}
-                      favouriteMovieList={favouriteMovies}
+                      updateUser={updateUser}
                       token={token}
-                      favouriteMovies={favouriteMovies}
+                      movies={movies}
                     />
                     <AccountDeletion
                       user={user}

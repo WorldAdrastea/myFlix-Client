@@ -1,8 +1,7 @@
 import { Row, Col, Form, Button } from "react-bootstrap";
-import { MovieCard } from "../MovieCard/movie-card";
 import { useState } from "react";
 
-export const ProfileView = ({ user, favouriteMovieList, token, favouriteMovies, updateUser }) => {
+export const ProfileView = ({ user, token, updateUser, movies }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -13,11 +12,11 @@ export const ProfileView = ({ user, favouriteMovieList, token, favouriteMovies, 
         event.preventDefault();
 
         const data = {
-            username,
-            password,
-            email,
-            birthdate
-        }
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthdate,
+        };
 
         console.log("data:", data); // Add this console log
 
@@ -58,21 +57,22 @@ export const ProfileView = ({ user, favouriteMovieList, token, favouriteMovies, 
                 Birthday: {user.Birthday}
             </Col>
             <Col>
-                Favourite Movies: {favouriteMovieList.map((movie) => {
-                    return (
-                    <Row key={movie._id}>
-                        <MovieCard 
-                            movies={movie}
-                            user={user} 
-                            token={token} 
-                            favouriteMovies={favouriteMovies} 
-                        />
-                    </Row>
-                    )
-                    })
-                }
+                Favourite Movies:
+                {user.FavoriteMovies.map((movieId) => {
+                    const movie = movies.find((m) => m.id === movieId);
+                    if (movie) {
+                        return (
+                        <div key={movie.id}>
+                            <div>{movie.title}</div>
+                        </div>
+                        );
+                    } else {
+                        return null;
+                    }
+                })}
             </Col>
-
+            
+            {/* displays the forms to allow user to update information */}
             <Row>
                 <Form onSubmit={handleSubmit}> 
                     <Form.Label>Username:</Form.Label>
@@ -82,28 +82,28 @@ export const ProfileView = ({ user, favouriteMovieList, token, favouriteMovies, 
                         onChange={(e) => setUsername(e.target.value)}
                         />
 
-                        <Form.Label>Password:</Form.Label>
+                    <Form.Label>Password:</Form.Label>
                         <Form.Control
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         />
 
-                        <Form.Label>Email:</Form.Label>
+                    <Form.Label>Email:</Form.Label>
                         <Form.Control
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         />
 
-                        <Form.Label>Birthdate:</Form.Label>
+                    <Form.Label>Birthdate:</Form.Label>
                         <Form.Control
                         type="date"
                         value={birthdate}
                         onChange={(e) => setBirthdate(e.target.value)}
                         />
 
-                        <Button type="submit">Save Changes</Button>
+                    <Button type="submit">Save Changes</Button>
                 </Form>
             </Row>
 
