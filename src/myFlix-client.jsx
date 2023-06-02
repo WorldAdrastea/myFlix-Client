@@ -1,3 +1,4 @@
+// Creates root of project
 import { createRoot } from 'react-dom/client';
 import { MainView } from './components/MainView/main-view';
 import Container from 'react-bootstrap/Container';

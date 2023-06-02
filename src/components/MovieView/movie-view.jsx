@@ -77,23 +77,19 @@ export const MovieView = ({ user, movies, updateUser, token }) => {
                 </Row>
 
                 <Row>
-                    <span>Title: </span>
-                    <span>{movie.title}</span>
+                    <span>Title: {movie.title}</span>
                 </Row>
 
                 <Row>
-                    <span>Description: </span>
-                    <span>{movie.description}</span>
+                    <span>Description: {movie.description}</span>
                 </Row>
 
                 <Row>
-                    <span>Genre: </span>
-                    <span>{movie.genre.name}</span>
+                    <span>Genre: {movie.genre.name}</span>
                 </Row>
 
                 <Row>
-                    <span>Director: </span>
-                    <span>{movie.director.name}</span>
+                    <span>Director: {movie.director.name}</span>
                 </Row>
 
                 <Row>
@@ -103,11 +99,11 @@ export const MovieView = ({ user, movies, updateUser, token }) => {
                 </Row>
                 <Row>
                 {madeFavourite ? (
-                        <Button variant="danger" className="ms-2" onClick={removeFavourite}>
+                        <Button variant="danger" className="mt-2 mb-2 ms-2" onClick={removeFavourite}>
                             Remove from favorites
                         </Button>
                     ) : (
-                        <Button variant="success" className="ms-2" onClick={addFavourite}>
+                        <Button variant="success" className="mt-2 mb-2 ms-2" onClick={addFavourite}>
                             Add to favorites
                         </Button>
                 )}
