@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Button, Form} from "react-bootstrap";
 
 export const SignupView = () => {
     const[username, setUsername] = useState("");
@@ -33,45 +34,46 @@ export const SignupView = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input
+        <Form onSubmit={handleSubmit} id="signUpForm" className="square border rounded border-dark mt-5">
+            <Form.Label className="mt-2 mb-2 ms-4 me-4 fw-bold text-decoration-underline"> Sign up </Form.Label>
+            <Form.Group className="mt-2 mb-2 ms-4 me-4">
+                <Form.Label>Username:</Form.Label>
+                <Form.Control
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                     minLength="3"
                 />
-            </label>
-            <label>
-                Password:
-                <input
+            </Form.Group>
+            <Form.Group className="mt-2 mb-2 ms-4 me-4">
+                <Form.Label>Password:</Form.Label>
+                <Form.Control
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                     required
+                    required
                 />
-            </label>
-            <label>
-                 Email:
-                <input
+            </Form.Group>
+            <Form.Group className="mt-2 mb-2 ms-4 me-4">
+                <Form.Label>Email:</Form.Label>
+                <Form.Control
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                 />
-            </label>
-            <label>
-                 Birthday:
-                <input
+                />
+            </Form.Group>
+            <Form.Group className="mt-2 mb-2 ms-4 me-4">
+                <Form.Label>Birthday:</Form.Label>
+                <Form.Control
                     type="date"
                     value={birthday}
                     onChange={(e) => setBirthday(e.target.value)}
                     required
                 />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
+            </Form.Group>
+            <Button type="submit" className="mt-2 mb-2 ms-4 me-4">Submit</Button>
+        </Form>
     );
 };

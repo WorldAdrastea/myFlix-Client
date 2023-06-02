@@ -54,7 +54,7 @@ export const ProfileView = ({ user, token, updateUser, movies }) => {
                 Email: {user.Email}
             </Col>
             <Col>
-                Birthday: {user.Birthday}
+                Birthday: {user.Birthday ? new Date(user.Birthday).toLocaleDateString("en-GB") : ""}
             </Col>
             <Col>
                 Favourite Movies:

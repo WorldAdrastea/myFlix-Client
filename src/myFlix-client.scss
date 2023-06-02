@@ -3,3 +3,9 @@ $color: steelblue;
 .my-flix {
   color: $color;
 }
+
+#loginSubmit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
