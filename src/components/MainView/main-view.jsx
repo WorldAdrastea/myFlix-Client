@@ -10,7 +10,7 @@ import { NavigationBar } from "../NavigationBar/navigation-bar";
 import { ProfileView } from "../ProfileView/profile-view";
 import { AccountDeletion } from "../ProfileView/account-deletion";
 //Importing Bootstrap Components
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Form } from "react-bootstrap";
 //Importing Router
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -20,11 +20,12 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken: null);
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredmovies] = useState([]);
 
   const updateUser = user => {
         setUser(user);
         localStorage.setItem("user", JSON.stringify(user));
-    } 
+    }
 
     useEffect(() => {
       if (!token) {
@@ -58,6 +59,16 @@ export const MainView = () => {
       });
     }, [token]);
 
+    useEffect(() => {
+      setFilteredmovies(movies);
+    }, [movies]);
+
+    const handleSearch = (event) => {
+      const searchQuery = event.target.value.toLowerCase();
+      let tempArray = movies.filter((index) => index.title.toLowerCase().includes(searchQuery));
+      setFilteredmovies(tempArray);
+    }
+
   return (
     // the following shows the login view and signup view if user is not logged it
     <BrowserRouter>
@@ -66,6 +77,7 @@ export const MainView = () => {
         onLoggedOut={() => {
           setUser(null);
         }}
+        handleSearch={handleSearch}
       />
       <Row className="justify-content-md-center">
         <Routes>
@@ -156,7 +168,16 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <>
-                    {movies.map((movie) => (
+                    <Col className="d-flex justify-content-md-center">
+                      <Form  className="mt-4 mb-4 w-100">
+                        <Form.Control
+                          type="search"
+                          placeholder="Search by title of movie"
+                          onChange={handleSearch}
+                        />
+                      </Form>
+                    </Col>
+                    {filteredMovies.map((movie) => (
                       <Row className="mb-4" key={movie.id}>
                         <MovieCard movie={movie} />
                       </Row>
