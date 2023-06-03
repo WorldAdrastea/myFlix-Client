@@ -39,7 +39,7 @@ export const AccountDeletion = ({ user, token, onRemoval }) => {
                             required
                         />
                     </FormGroup>
-                    <Button type="submit"> Delete Account</Button>
+                    <Button className="mt-2 mb-2" type="submit" variant="danger"> Delete Account</Button>
                 </Row>
             </Form>
         </Row>

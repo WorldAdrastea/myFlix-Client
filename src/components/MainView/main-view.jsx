@@ -25,7 +25,7 @@ export const MainView = () => {
   const updateUser = user => {
         setUser(user);
         localStorage.setItem("user", JSON.stringify(user));
-    }
+      }
 
     useEffect(() => {
       if (!token) {
@@ -63,10 +63,12 @@ export const MainView = () => {
       setFilteredmovies(movies);
     }, [movies]);
 
+    // Matches the contents of the search bar to the movie titles which has been implemented in Line 173
+
     const handleSearch = (event) => {
       const searchQuery = event.target.value.toLowerCase();
-      let tempArray = movies.filter((index) => index.title.toLowerCase().includes(searchQuery));
-      setFilteredmovies(tempArray);
+      let filterArray = movies.filter((index) => index.title.toLowerCase().includes(searchQuery));
+      setFilteredmovies(filterArray);
     }
 
   return (

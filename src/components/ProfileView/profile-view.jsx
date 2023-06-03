@@ -103,7 +103,7 @@ export const ProfileView = ({ user, token, updateUser, movies }) => {
                         onChange={(e) => setBirthdate(e.target.value)}
                         />
 
-                    <Button type="submit">Save Changes</Button>
+                    <Button className="mt-2 mb-2" type="submit">Save Changes</Button>
                 </Form>
             </Row>
 

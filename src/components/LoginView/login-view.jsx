@@ -13,6 +13,7 @@ export const LoginView = ({ onLoggedIn }) => {
             Password: password
         };
 
+        // Fetches login endpoint with a POST method to match up form's content with vales set in the database (Line 40 onwards)
         fetch("https://secret-peak-11846.herokuapp.com/login", {
             method: "POST",
             headers: {
