@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //Import myFlix-client.scss
-import './myFlix-client.scss';
+import './index.scss';
 
 //Main component (will eventually use all the others)
 const App = () => {
