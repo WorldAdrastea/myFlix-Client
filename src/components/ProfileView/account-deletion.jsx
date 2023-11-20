@@ -9,7 +9,8 @@ export const AccountDeletion = ({ user, token, onRemoval }) => {
         event.preventDefault();
 
         if (Account === user.Username) {
-            fetch(`https://secret-peak-11846.herokuapp.com/users/${user.Username}`, {
+            fetch(`http://ALBV2-640718364.us-east-1.elb.amazonaws.com/users/${user.Username}`, {
+            // fetch(`http://localhost:8080/users/${user.Username}`, {
                 headers: { Authorization: `Bearer ${token}` },
                 method: "DELETE"
             }).then((response) => {

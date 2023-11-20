@@ -18,9 +18,9 @@ export const ProfileView = ({ user, token, updateUser, movies }) => {
             Birthday: birthdate,
         };
 
-        console.log("data:", data); // Add this console log
-
-        fetch(`https://secret-peak-11846.herokuapp.com/users/${user.Username}`, {
+        console.log("data:", data);
+        fetch(`http://ALBV2-640718364.us-east-1.elb.amazonaws.com/users/${user.Username}`, {
+        // fetch(`http://localhost:8080/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {

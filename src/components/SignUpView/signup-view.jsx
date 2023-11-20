@@ -16,8 +16,8 @@ export const SignupView = () => {
             Email: email,
             Birthday: birthday
         };
-
-        fetch("https://secret-peak-11846.herokuapp.com/users", {
+        fetch("http://ALBV2-640718364.us-east-1.elb.amazonaws.com/users", {
+        // fetch("http://localhost:8080/users", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {

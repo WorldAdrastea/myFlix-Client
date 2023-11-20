@@ -14,7 +14,8 @@ export const LoginView = ({ onLoggedIn }) => {
         };
 
         // Fetches login endpoint with a POST method to match up form's content with vales set in the database (Line 40 onwards)
-        fetch("https://secret-peak-11846.herokuapp.com/login", {
+        fetch("http://ALBV2-640718364.us-east-1.elb.amazonaws.com/login", {
+        // fetch("http://localhost:8080/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

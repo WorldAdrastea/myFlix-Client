@@ -7,6 +7,7 @@ import './movie-view.scss';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Button from "react-bootstrap/Button";
+import { ImageUpload } from "../ImageUpload/ImageUpload";
 
 export const MovieView = ({ user, movies, updateUser, token }) => {
     const { movieId } = useParams();
@@ -20,7 +21,8 @@ export const MovieView = ({ user, movies, updateUser, token }) => {
     }, [user, movie]);
 
     const addFavourite = () => {
-        fetch(`https://secret-peak-11846.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+        fetch(`http://ALBV2-640718364.us-east-1.elb.amazonaws.com/users/${user.Username}/movies/${movieId}`, {
+        // fetch(`http://localhost:8080/users/${user.Username}/movies/${movieId}`, {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -45,7 +47,8 @@ export const MovieView = ({ user, movies, updateUser, token }) => {
     }
 
     const removeFavourite = () => {
-        fetch(`https://secret-peak-11846.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+        fetch(`http://ALBV2-640718364.us-east-1.elb.amazonaws.com/users/${user.Username}/movies/${movieId}`, {
+        // fetch(`http://localhost:8080/users/${user.Username}/movies/${movieId}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -107,6 +110,11 @@ export const MovieView = ({ user, movies, updateUser, token }) => {
                             Add to favorites
                         </Button>
                 )}
+                </Row>
+                <Row>
+                    <ImageUpload
+                        token={token}
+                    />
                 </Row>
             </Row>
         </Container>

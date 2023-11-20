@@ -31,12 +31,16 @@ export const MainView = () => {
       if (!token) {
         return;
       }
-      //Fetches API with movies and maps the data out into the following structure
-      fetch("https://secret-peak-11846.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` }
+      // Fetches API with movies and maps the data out into the following structure
+      fetch("http://ALBV2-640718364.us-east-1.elb.amazonaws.com/movies", {
+      // fetch("http://54.235.21.139/movies", {
+        headers: { Authorization: `Bearer ${token}` },
       })
-        .then((response) => response.json())
+        .then((response => {
+          return response.json();
+        }))
         .then((data) => {
+          console.log("Data from API: ", data);
           const moviesFromApi = data.map((movie) => {
             return {
               id: movie._id,
@@ -52,16 +56,18 @@ export const MainView = () => {
                 bio: movie.Director.Bio,
                 birth: movie.Director.Birth,
                 death: movie.Director.Death,
-              }
+              },
+              uploadedImage: movie.UploadedImage
             };
-          });
+          })
         setMovies(moviesFromApi);
-      });
+      })
+      .catch((error) => {
+        console.error("Error fetching movies: ", error);
+      })
     }, [token]);
 
-    useEffect(() => {
-      setFilteredmovies(movies);
-    }, [movies]);
+    console.log("Filtered Movies:", filteredMovies)
 
     // Matches the contents of the search bar to the movie titles which has been implemented in Line 173
 
